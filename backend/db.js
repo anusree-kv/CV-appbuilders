@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: '',        // ⚠️ XAMPP default is empty
+  password: '',        
   database: 'cv_app',
   port: 3306
 });

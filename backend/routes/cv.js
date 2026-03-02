@@ -3,9 +3,7 @@ const router = express.Router();
 const db = require('../db');
 const PDFDocument = require('pdfkit');
 
-/* =========================
-   GET WITH PAGINATION
-========================= */
+
 router.get('/', async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
@@ -33,9 +31,7 @@ router.get('/', async (req, res) => {
   res.json({ data: users });
 });
 
-/* =========================
-   ADD USER
-========================= */
+
 router.post('/', async (req, res) => {
   const { name, email, phone, summary, skills, experiences, education } = req.body;
 
@@ -63,9 +59,7 @@ router.post('/', async (req, res) => {
   res.json({ message: 'User added successfully' });
 });
 
-/* =========================
-   UPDATE USER
-========================= */
+
 router.put('/:id', async (req, res) => {
   const id = req.params.id;
   const { name, email, phone, summary, skills, experiences, education } = req.body;
@@ -95,17 +89,13 @@ router.put('/:id', async (req, res) => {
   res.json({ message: 'User updated successfully' });
 });
 
-/* =========================
-   DELETE USER
-========================= */
+
 router.delete('/:id', async (req, res) => {
   await db.query('DELETE FROM users WHERE id=?', [req.params.id]);
   res.json({ message: 'User deleted successfully' });
 });
 
-/* =========================
-   GENERATE PDF
-========================= */
+
 router.get('/:id/pdf', async (req, res) => {
   const id = req.params.id;
 
